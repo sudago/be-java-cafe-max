@@ -1,10 +1,10 @@
-package kr.codesqaud.cafe;
+package jian.springcafe;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CafeApplicationTests {
+class SpringCafeApplicationTests {
 
 	@Test
 	void contextLoads() {

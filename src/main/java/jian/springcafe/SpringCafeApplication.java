@@ -1,13 +1,13 @@
-package kr.codesqaud.cafe;
+package jian.springcafe;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CafeApplication {
+public class SpringCafeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CafeApplication.class, args);
+		SpringApplication.run(SpringCafeApplication.class, args);
 	}
 
 }

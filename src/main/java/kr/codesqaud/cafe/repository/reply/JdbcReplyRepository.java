@@ -30,7 +30,7 @@ public class JdbcReplyRepository implements ReplyRepository{
         parameters.put("contents", reply.getContents());
         parameters.put("created_at", reply.getCreatedAt());
         parameters.put("article_id", reply.getArticleId());
-        parameters.put("deleted", reply.getDeleted() ? 1 : 0);
+        parameters.put("deleted", reply.getDeleted());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         reply.setReplyId(key.longValue());
@@ -48,20 +48,20 @@ public class JdbcReplyRepository implements ReplyRepository{
                 reply.setModifiedAt(rs.getTimestamp("modified_at").toLocalDateTime());
             }
             reply.setArticleId(rs.getLong("article_id"));
-            reply.setDeleted(rs.getInt("deleted") == 1);
+            reply.setDeleted(rs.getBoolean("deleted"));
             return reply;
         };
     }
 
     @Override
     public Optional<Reply> findByReplyId(Long replyId) {
-        List<Reply> result = jdbcTemplate.query("select * from reply where reply_id = ? and deleted = 0", replyRowMapper(), replyId);
+        List<Reply> result = jdbcTemplate.query("select * from reply where reply_id = ? and deleted = false", replyRowMapper(), replyId);
         return result.stream().findAny();
     }
 
     @Override
     public List<Reply> findByArticleId(Long articleId) {
-        return jdbcTemplate.query("select * from reply where article_id = ? and deleted = 0", replyRowMapper(), articleId);
+        return jdbcTemplate.query("select * from reply where article_id = ? and deleted = false", replyRowMapper(), articleId);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class JdbcReplyRepository implements ReplyRepository{
 
     @Override
     public Long delete(Long replyId) {
-        jdbcTemplate.update("update reply set deleted = ? where reply_id = ?", 1, replyId);
+        jdbcTemplate.update("update reply set deleted = true where reply_id = ?", replyId);
         return replyId;
     }
 }

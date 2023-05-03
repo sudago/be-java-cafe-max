@@ -33,7 +33,7 @@ public class JdbcUserRepository implements UserRepository {
         parameters.put("password", user.getPassword());
         parameters.put("name", user.getName());
         parameters.put("email", user.getEmail());
-        parameters.put("deleted", user.getDeleted() ? 1 : 0);
+        parameters.put("deleted", user.getDeleted());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         user.setCustomerId(key.longValue());
@@ -48,7 +48,7 @@ public class JdbcUserRepository implements UserRepository {
             user.setPassword(rs.getString("password"));
             user.setName(rs.getString("name"));
             user.setEmail(rs.getString("email"));
-            user.setDeleted(rs.getInt("deleted") == 1);
+            user.setDeleted(rs.getBoolean("deleted"));
             return user;
         };
     }
@@ -56,19 +56,19 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public Optional<User> findByUserId(String userId) {
         // 디자인 패턴 중, 템플릿 메서드 패턴의 요소가 많이 반영되어있기 때문이다.
-        List<User> result = jdbcTemplate.query("select * from users where user_id = ? and deleted = 0", userRowMapper(), userId);
+        List<User> result = jdbcTemplate.query("select * from users where user_id = ? and deleted = false", userRowMapper(), userId);
         return result.stream().findAny();
     }
 
     @Override
     public Optional<User> findByName(String name) {
-        List<User> result = jdbcTemplate.query("select * from users where name = ? and deleted = 0", userRowMapper(), name);
+        List<User> result = jdbcTemplate.query("select * from users where name = ? and deleted = false", userRowMapper(), name);
         return result.stream().findAny();
     }
 
     @Override
     public List<User> findAll() {
-        return jdbcTemplate.query("select * from users where deleted = 0", userRowMapper());
+        return jdbcTemplate.query("select * from users where deleted = false", userRowMapper());
     }
 
     @Override

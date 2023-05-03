@@ -9,7 +9,7 @@ create table users
     password varchar(32) not null,
     name varchar(16) not null,
     email varchar(64) not null,
-    deleted varchar(1),
+    deleted boolean,
     primary key (customer_id)
 );
 
@@ -22,7 +22,7 @@ create table article
     created_at datetime not null,
     modified_at datetime null,
     points bigint not null,
-    deleted varchar(1),
+    deleted boolean,
     primary key (id)
 );
 
@@ -34,7 +34,7 @@ create table reply
     created_at datetime not null,
     modified_at datetime null,
     article_id bigint not null,
-    deleted varchar(1),
+    deleted boolean,
     primary key (reply_id)
 );
 

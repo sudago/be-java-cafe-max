@@ -35,7 +35,7 @@ public class JdbcArticleRepository implements ArticleRepository{
         parameters.put("contents", article.getContents());
         parameters.put("created_at", article.getCreatedAt());
         parameters.put("points", article.getPoints());
-        parameters.put("deleted", article.getDeleted() ? 1 : 0);
+        parameters.put("deleted", article.getDeleted());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         article.setId(key.longValue());
@@ -54,20 +54,20 @@ public class JdbcArticleRepository implements ArticleRepository{
                 article.setModifiedAt(rs.getTimestamp("modified_at").toLocalDateTime());
             }
             article.setPoints(rs.getLong("points"));
-            article.setDeleted(rs.getInt("deleted") == 1);
+            article.setDeleted(rs.getBoolean("deleted"));
             return article;
         };
     }
 
     @Override
     public Optional<Article> findById(Long id) {
-        List<Article> result = jdbcTemplate.query("select * from article where id = ? and deleted = 0", articleRowMapper(), id);
+        List<Article> result = jdbcTemplate.query("select * from article where id = ? and deleted = false", articleRowMapper(), id);
         return result.stream().findAny();
     }
 
     @Override
     public List<Article> findAll(Paging paging) {
-        return jdbcTemplate.query("select * from article where deleted = 0 order by created_at desc limit ?, ?"
+        return jdbcTemplate.query("select * from article where deleted = false order by created_at desc limit ?, ?"
                 , articleRowMapper(), paging.getStart(), Paging.getCntPerPage());
     }
 
@@ -85,12 +85,12 @@ public class JdbcArticleRepository implements ArticleRepository{
 
     @Override
     public Long delete(Long id) {
-        jdbcTemplate.update("update article set deleted = ? where id = ?", 1, id);
+        jdbcTemplate.update("update article set deleted = ? where id = ?",true, id);
         return id;
     }
 
     @Override
     public Long count(){
-        return jdbcTemplate.queryForObject("select count(*) from article where deleted = 0", Long.class);
+        return jdbcTemplate.queryForObject("select count(*) from article where deleted = false", Long.class);
     }
 }

@@ -38,7 +38,7 @@
 |             | 비밀번호 |  password   | varchar(32) | NOT NULL |                |
 |             |  이름  |    name     | varchar(16) | NOT NULL |                |
 |             | 이메일  |    email    | varchar(64) | NOT NULL |                |
-|             |  삭제  |   deleted   | varchar(1)  |          |                |
+|             |  삭제  |   deleted   |   boolean   |          |                |
 
 
 ### 게시글 article
@@ -51,7 +51,7 @@
 |             | 생성일 | created_at  |   datetime   | NOT NULL |                |
 |             | 수정일 | modified_at |   datetime   |   NULL   |                |
 |             | 포인트 |   points    |    bigint    | NOT NULL |                |
-|             | 삭제  |   deleted   |  varchar(1)  |          |                |
+|             | 삭제  |   deleted   |   boolean    |          |                |
 
 ### 댓글 reply
 |     Key     |   이름   |    Field    |     Type     |   NULL   |     Extra      |
@@ -62,4 +62,4 @@
 |             |  생성일   | created_at  |   datetime   | NOT NULL |                |
 |             |  수정일   | modified_at |   datetime   |   NULL   |                |
 |             | 게시글 번호 | article_id  |    bigint    | NOT NULL |                |
-|             |   삭제   |   deleted   |  varchar(1)  |          |                |
+|             |   삭제   |   deleted   |   boolean    |          |                |

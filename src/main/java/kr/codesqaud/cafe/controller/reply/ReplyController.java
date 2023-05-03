@@ -26,7 +26,7 @@ public class ReplyController {
         return "redirect:/questions/" + articleId;
     }
 
-    @GetMapping("/questions/{articleId}/answers/{replyId}/edit")
+    @GetMapping("/questions/{articleId}/answers/{replyId}")
     public String editForm(@PathVariable Long articleId, @PathVariable Long replyId, Model model, HttpSession session){
         if (!replyService.isAuthorCurrentUser(replyId, session)){
             model.addAttribute("id", articleId);
@@ -37,7 +37,7 @@ public class ReplyController {
         return "qna/edit_reply";
     }
 
-    @PutMapping("/questions/{articleId}/answers/{replyId}/edit")
+    @PutMapping("/questions/{articleId}/answers/{replyId}")
     public String edit(@PathVariable Long articleId, @PathVariable Long replyId, String contents) {
         replyService.update(replyId, contents);
         return "redirect:/questions/" + articleId;

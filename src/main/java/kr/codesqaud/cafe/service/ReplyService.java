@@ -28,7 +28,7 @@ public class ReplyService {
         return replyRepository.findByReplyId(replyId).orElseThrow(()-> new IllegalStateException("없는 댓글입니다."));
     }
 
-    public List<Reply> findAll(Long articleId){
+    public List<Reply> findAllByArticleId(Long articleId){
         return replyRepository.findByArticleId(articleId).stream().collect(Collectors.toUnmodifiableList());
     }
 

@@ -85,8 +85,8 @@ public class JdbcArticleRepository implements ArticleRepository{
 
     @Override
     public Long delete(Long id) {
-        jdbcTemplate.update("update article set deleted = ? where id = ?",true, id);
-        jdbcTemplate.update("update reply set deleted = ? where article_id = ?",true, id);
+        jdbcTemplate.update("update article set deleted = ? where id = ?", true, id);
+        jdbcTemplate.update("update reply set deleted = ? where article_id = ?", true, id);
         return id;
     }
 

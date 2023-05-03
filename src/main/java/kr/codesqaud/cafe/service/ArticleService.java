@@ -49,7 +49,8 @@ public class ArticleService {
 
     // 게시글의 작성자와 게시글에 있는 모든 댓글의 작성자가 같으면 게시글 삭제 가능
     public boolean isWriterMatched(Long articleId, List<Reply> replies){
-        return replies.stream().allMatch(reply -> reply.getWriter().equals(findOne(articleId).getWriter()));
+        String writer = findOne(articleId).getWriter();
+        return replies.stream().filter(reply -> reply.getWriter().equals(writer)).count() == replies.size();
     }
 
     @Transactional

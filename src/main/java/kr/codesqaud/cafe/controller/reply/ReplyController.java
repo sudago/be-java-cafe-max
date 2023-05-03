@@ -43,7 +43,7 @@ public class ReplyController {
         return "redirect:/questions/" + articleId;
     }
 
-    @DeleteMapping("/questions/{articleId}/answers/{replyId}/delete")
+    @DeleteMapping("/questions/{articleId}/answers/{replyId}")
     public String delete(@PathVariable Long articleId, @PathVariable Long replyId, HttpSession session, Model model) {
         if (!replyService.isAuthorCurrentUser(replyId, session)) {
             model.addAttribute("id", articleId);

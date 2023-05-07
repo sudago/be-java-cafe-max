@@ -14,12 +14,12 @@
 |                \/questions                |    POST     |  게시글 작성   |
 |             \/questions/{id}              |     GET     | 게시글 상세 조회 |
 |           \/questions/{id}/edit           |     GET     | 게시글 수정 폼  |
-|           \/questions/{id}/edit           |    POST     |  게시글 수정   |
-|             \/questions/{id}              |    POST     |  게시글 삭제   |
+|             \/questions/{id}              |     PUT     |  게시글 수정   |
+|             \/questions/{id}              |   DELETE    |  게시글 삭제   |
 |         **\/answers/{articleId}**         |    POST     |   댓글 작성   |
 | \/questions/{articleId}/answers/{replyId} |     GET     |  댓글 수정 폼  |
-| \/questions/{articleId}/answers/{replyId} |    POST     |   댓글 수정   |
-| \/questions/{articleId}/answers/{replyId} |    POST     |   댓글 삭제   |
+| \/questions/{articleId}/answers/{replyId} |     PUT     |   댓글 수정   |
+| \/questions/{articleId}/answers/{replyId} |   DELETE    |   댓글 삭제   |
 |                **\/users**                |     GET     | 회원 목록 조회  |
 |              \/users/create               |     GET     |  회원 가입 폼  |
 |              \/users/create               |    POST     |   회원 가입   |

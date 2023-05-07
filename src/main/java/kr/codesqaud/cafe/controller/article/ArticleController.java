@@ -71,7 +71,7 @@ public class ArticleController {
         return "qna/edit";
     }
 
-    @PutMapping("/questions/{id}/edit")
+    @PutMapping("/questions/{id}")
     public String updateArticle(@PathVariable Long id, ArticleForm form){
         articleService.update(id, form);
         return "redirect:/";

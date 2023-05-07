@@ -74,4 +74,10 @@ public class JdbcReplyRepository implements ReplyRepository{
         jdbcTemplate.update("update reply set deleted = true where reply_id = ?", replyId);
         return replyId;
     }
+
+    @Override
+    public Long deleteAllByArticleId(Long articleId) {
+        jdbcTemplate.update("update reply set deleted = true where article_id = ?", articleId);
+        return null;
+    }
 }

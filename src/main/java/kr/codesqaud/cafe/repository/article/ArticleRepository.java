@@ -14,6 +14,5 @@ public interface ArticleRepository {
     Optional<Article> update(Long id, ArticleForm form);
     Long delete(Long id);
     Long count();
-
     void clearStore();
 }

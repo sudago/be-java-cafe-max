@@ -88,6 +88,7 @@ public class ArticleController {
         }
 
         articleService.delete(id);
+        replyService.deleteAllByArticleId(id);
         return "redirect:/";
     }
     

@@ -12,4 +12,5 @@ public interface ReplyRepository {
     List<Reply> findByArticleId(Long articleId);
     Optional<Reply> update(Long replyId, String contents);
     Long deleteByReplyId(Long replyId);
+    Long deleteAllByArticleId(Long articleId);
 }

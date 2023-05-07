@@ -50,7 +50,7 @@ public class ReplyController {
             return "qna/edit_failed";
         }
 
-        replyService.delete(replyId);
+        replyService.deleteByReplyId(replyId);
         return "redirect:/questions/" + articleId;
     }
 }

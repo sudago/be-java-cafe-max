@@ -11,5 +11,5 @@ public interface ReplyRepository {
     // 해당 게시글에 포함 된 모든 댓글 호출
     List<Reply> findByArticleId(Long articleId);
     Optional<Reply> update(Long replyId, String contents);
-    Long delete(Long replyId);
+    Long deleteByReplyId(Long replyId);
 }

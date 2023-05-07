@@ -44,8 +44,8 @@ public class ReplyService {
     }
 
     @Transactional
-    public Long delete(Long replyId){
-        return replyRepository.delete(replyId);
+    public Long deleteByReplyId(Long replyId){
+        return replyRepository.deleteByReplyId(replyId);
     }
 
 }

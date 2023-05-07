@@ -60,7 +60,7 @@ public class ArticleController {
     }
 
     // 게시글 수정
-    @GetMapping("/questions/{id}")
+    @GetMapping("/questions/{id}/edit")
     public String editArticleForm(@PathVariable Long id, Model model, HttpSession session) {
         if (!articleService.isAuthCurrentUser(id, session)) {
             model.addAttribute("id", id);
@@ -71,7 +71,7 @@ public class ArticleController {
         return "qna/edit";
     }
 
-    @PutMapping("/questions/{id}")
+    @PutMapping("/questions/{id}/edit")
     public String updateArticle(@PathVariable Long id, ArticleForm form){
         articleService.update(id, form);
         return "redirect:/";

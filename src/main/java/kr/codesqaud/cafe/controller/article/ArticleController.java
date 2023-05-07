@@ -27,7 +27,7 @@ public class ArticleController {
 
     // 게시글 목록 보기
     @GetMapping
-    public String list(@RequestParam(defaultValue = "1") int nowPage, Model model){
+    public String list(@RequestParam(value = "page", defaultValue = "1") int nowPage, Model model) {
         Paging paging = new Paging(nowPage, articleService.count());
         List<Article> articles = articleService.findArticles(paging);
 

@@ -3,45 +3,51 @@
 {{> layout/navbar}}
 
 <div class="container" id="main">
-   <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
-      <div class="panel panel-default qna-list">
-          <ul class="list">
-              {{#articles}}
-              <li>
-                  <div class="wrap">
-                      <div class="main">
-                          <strong class="subject">
-                              <a href="/questions/{{id}}">{{title}}</a>
-                          </strong>
-                          <div class="auth-info">
-                              <i class="icon-add-comment"></i>
-                              <span class="time">{{createdAt}}</span>
-                              <a href="/users/{{writer}}" class="author">{{writer}}</a>
-                          </div>
-                          <div class="reply" title="댓글">
-                              <i class="icon-reply"></i>
-                              <span class="point">{{points}}</span>
-                          </div>
-                      </div>
-                  </div>
-              </li>
-              {{/articles}}
-          </ul>
-          <div class="row">
-              <div class="col-md-3"></div>
-              <div class="col-md-6 text-center">
-                  <ul class="pagination center-block" style="display:inline-block;">
-                      <li><a href="#">«</a></li>
-                      {{#paging}}
-                      <li><a href="#">1</a></li>
-                      {{/paging}}
-                      <li><a href="#">»</a></li>
-                </ul>
-              </div>
-              <div class="col-md-3 qna-write">
-                  <a href="/questions" class="btn btn-primary pull-right" role="button">질문하기</a>
-              </div>
-          </div>
+    <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
+        <div class="panel panel-default qna-list">
+            <ul class="list">
+                {{#articles}}
+                <li>
+                    <div class="wrap">
+                        <div class="main">
+                            <strong class="subject">
+                                <a href="/questions/{{id}}">{{title}}</a>
+                            </strong>
+                            <div class="auth-info">
+                                <i class="icon-add-comment"></i>
+                                <span class="time">{{createdAt}}</span>
+                                <a href="/users/{{writer}}" class="author">{{writer}}</a>
+                            </div>
+                            <div class="reply" title="댓글">
+                                <i class="icon-reply"></i>
+                                <span class="point">{{points}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/articles}}
+            </ul>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 text-center">
+                    {{#paging}}
+                    <ul class="pagination center-block" style="display:inline-block;">
+                        {{#hasPrevious}}
+                        <li><a href="/?page={{previousPage}}">«</a></li>
+                        {{/hasPrevious}}
+                        {{#pageNumbers}}
+                        <li><a href="/?page={{this}}">{{this}}</a></li>
+                        {{/pageNumbers}}
+                        {{#hasNext}}
+                        <li><a href="/?page={{nextPage}}">»</a></li>
+                        {{/hasNext}}
+                    </ul>
+                    {{/paging}}
+                </div>
+                <div class="col-md-3 qna-write">
+                    <a href="/questions" class="btn btn-primary pull-right" role="button">질문하기</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -125,3 +131,4 @@
 
 {{> layout/footer}}
 
+</body>

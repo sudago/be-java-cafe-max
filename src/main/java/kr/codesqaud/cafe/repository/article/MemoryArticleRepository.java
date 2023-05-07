@@ -42,7 +42,7 @@ public class MemoryArticleRepository implements ArticleRepository{
     @Override
     public Long delete(Long id) {
         Article article = store.get(id);
-        article.setDeleted(true);
+        article.delete();
         return article.getId();
     }
 

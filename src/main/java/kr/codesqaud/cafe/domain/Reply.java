@@ -74,7 +74,7 @@ public class Reply {
         return deleted;
     }
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
+    public void delete() {
+        this.deleted = true;
     }
 }

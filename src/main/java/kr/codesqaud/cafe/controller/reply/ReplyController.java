@@ -33,7 +33,7 @@ public class ReplyController {
             return "qna/edit_failed";
         }
 
-        model.addAttribute("reply", replyService.findOne(replyId));
+        model.addAttribute("reply", replyService.findOneByReplyId(replyId));
         return "qna/edit_reply";
     }
 

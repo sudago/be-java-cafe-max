@@ -24,7 +24,7 @@ public class ReplyService {
         return replyRepository.save(reply).getReplyId();
     }
 
-    public Reply findOne(Long replyId) {
+    public Reply findOneByReplyId(Long replyId) {
         return replyRepository.findByReplyId(replyId).orElseThrow(()-> new IllegalStateException("없는 댓글입니다."));
     }
 
@@ -35,7 +35,7 @@ public class ReplyService {
     // 현재 유저와 댓글 작성자의 아이디가 일치하는지 확인하고 권한 부여
     public boolean isAuthorCurrentUser(Long replyId, HttpSession session){
         User user = (User) session.getAttribute(SessionConst.LOGIN_USER);
-        return findOne(replyId).getWriter().equals(user.getUserId());
+        return findOneByReplyId(replyId).getWriter().equals(user.getUserId());
     }
 
     @Transactional

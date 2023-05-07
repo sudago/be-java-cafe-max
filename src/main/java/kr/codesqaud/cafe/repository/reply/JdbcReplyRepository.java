@@ -48,7 +48,6 @@ public class JdbcReplyRepository implements ReplyRepository{
                 reply.setModifiedAt(rs.getTimestamp("modified_at").toLocalDateTime());
             }
             reply.setArticleId(rs.getLong("article_id"));
-            reply.setDeleted(rs.getBoolean("deleted"));
             return reply;
         };
     }

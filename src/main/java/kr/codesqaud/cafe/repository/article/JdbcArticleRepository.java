@@ -54,7 +54,6 @@ public class JdbcArticleRepository implements ArticleRepository{
                 article.setModifiedAt(rs.getTimestamp("modified_at").toLocalDateTime());
             }
             article.setPoints(rs.getLong("points"));
-            article.setDeleted(rs.getBoolean("deleted"));
             return article;
         };
     }

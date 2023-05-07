@@ -48,7 +48,6 @@ public class JdbcUserRepository implements UserRepository {
             user.setPassword(rs.getString("password"));
             user.setName(rs.getString("name"));
             user.setEmail(rs.getString("email"));
-            user.setDeleted(rs.getBoolean("deleted"));
             return user;
         };
     }

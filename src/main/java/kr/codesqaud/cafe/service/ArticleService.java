@@ -29,6 +29,7 @@ public class ArticleService {
         return articleRepository.save(article).getId();
     }
 
+    @Transactional
     public List<Article> findArticles(Paging paging){
         return articleRepository.findAll(paging).stream().collect(Collectors.toUnmodifiableList());
     }

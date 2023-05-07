@@ -19,7 +19,7 @@ public class ReplyController {
         this.replyService = replyService;
     }
 
-    @PostMapping("/answers/{articleId}")
+    @PostMapping("/questions/{articleId}/answers")
     public String post(@PathVariable Long articleId, String contents, HttpSession session) {
         User user = (User) session.getAttribute(SessionConst.LOGIN_USER);
         replyService.post(user.getUserId(), contents, articleId);
